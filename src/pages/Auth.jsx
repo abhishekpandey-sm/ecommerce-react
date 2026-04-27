@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { AuthContext } from "../context/AuthContext"
+import { useAuth } from "../context/AuthContext"
 import { useNavigate } from 'react-router-dom'
 
 const Auth = () => {
@@ -9,7 +9,7 @@ const Auth = () => {
 
     const navigate = useNavigate();
 
-    const { user, signUp, login, logout } = useContext(AuthContext);
+    const { user, signUp, login, logout } = useAuth();
 
     const {
         register,
@@ -37,7 +37,6 @@ const Auth = () => {
     <div className="page">
         <div className="container">
             <div className="auth-container">
-                {user && <p>User logged in: {user.email} </p>}
                 <h1 className='page-title'>
                     {mode === 'signup' ? "Sign Up" : "Login"}
                 </h1>

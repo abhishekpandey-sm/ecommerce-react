@@ -1,6 +1,7 @@
-import  { createContext, useState } from 'react'
+import  { createContext, useState, useContext } from 'react'
+import Auth from '../pages/Auth';
 
-export const AuthContext = createContext(null);
+const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(localStorage.getItem("currentEmail") ? {email: localStorage.getItem("currentEmail")} : null);
@@ -43,3 +44,7 @@ export default function AuthProvider({ children }) {
     return (<AuthContext.Provider value={{ signUp, user, logout, login}}>{ children }</AuthContext.Provider>);
 }
 
+export function useAuth(){
+    const context = useContext(AuthContext)
+    return context;
+}
